@@ -121,8 +121,11 @@ services:
         dockerfile: "Dockerfile-${PHP_VERSION}"
         args:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
+          - INSTALL_PHPREDIS=${PHP_WORKER_INSTALL_PHPREDIS}
       volumes_from:
         - applications
+      # volumes:
+      #   - ./php-worker/supervisord.d:/etc/supervisord.d
       depends_on:
         - workspace
       extra_hosts:
@@ -148,6 +151,7 @@ services:
         - "${NGINX_HOST_HTTPS_PORT}:443"
       depends_on:
         - php-fpm
+        - php-worker
       networks:
         - frontend
         - backend
