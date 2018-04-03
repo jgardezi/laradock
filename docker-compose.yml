@@ -7,6 +7,25 @@ services:
     applications:
       image: tianon/true
 
+    # applications:
+    #   image: tianon/true
+    #   volumes:
+    #     - ${APPLICATION}:/var/www
+
+    # applications:
+    #   build:
+    #     context: ./true
+    #     dockerfile: Dockerfile
+    #   volumes:
+    #     - ${APPLICATION}:/var/www
+
+    # applications:         
+    #   build:
+    #     context: ./busybox
+    #     dockerfile: Dockerfile
+    #   volumes:
+    #     - /var/www
+
 ### Workspace Utilities Container ###########################
 
     workspace:
