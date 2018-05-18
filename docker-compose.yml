@@ -118,9 +118,10 @@ services:
     php-worker:
       build:
         context: ./php-worker
-        dockerfile: "Dockerfile-${PHP_VERSION}"
+        dockerfile: "Dockerfile-${PHP_WORKER_VERSION}"
         args:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
+          - INSTALL_PHPREDIS=${PHP_WORKER_INSTALL_PHPREDIS}
       volumes_from:
         - applications
       depends_on:
@@ -148,6 +149,7 @@ services:
         - "${NGINX_HOST_HTTPS_PORT}:443"
       depends_on:
         - php-fpm
+        - php-worker
       networks:
         - frontend
         - backend
