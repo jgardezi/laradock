@@ -137,7 +137,7 @@ services:
     php-worker:
       build:
         context: ./php-worker
-        dockerfile: "Dockerfile-${PHP_VERSION}"
+        dockerfile: "Dockerfile-${PHP_WORKER_VERSION}"
         args:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
           - INSTALL_PHPREDIS=${PHP_WORKER_INSTALL_PHPREDIS}
