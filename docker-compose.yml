@@ -137,7 +137,7 @@ services:
     php-worker:
       build:
         context: ./php-worker
-        dockerfile: "Dockerfile-${PHP_VERSION}"
+        dockerfile: "Dockerfile-${PHP_WORKER_VERSION}"
         args:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
           - INSTALL_PHPREDIS=${PHP_WORKER_INSTALL_PHPREDIS}
@@ -295,6 +295,17 @@ services:
       networks:
         - frontend
 
+### Portainer Container #######################################
+
+    portainer:
+      image: portainer/portainer
+      command: -H unix:///var/run/docker.sock
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - portainer_data:/data
+      ports:
+        - "9000:9000"
+
 ### Jenkins ###################################################
 
     jenkins:
@@ -380,4 +391,6 @@ volumes:
   elasticsearch-data:
     driver: "local"
   elasticsearch-plugins:
+    driver: "local"
+  portainer_data:
     driver: "local"
